@@ -1,0 +1,4 @@
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Gfx.csproj.AssemblyReference.cache
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Gfx.Pallate.resources
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Gfx.csproj.GenerateResource.cache
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Gfx.csproj.CoreCompileInputs.cache
