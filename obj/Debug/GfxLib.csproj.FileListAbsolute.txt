@@ -1,8 +1,8 @@
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\Graphics.dll
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\Graphics.pdb
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.AssemblyReference.cache
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.Pallate.resources
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.GenerateResource.cache
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.CoreCompileInputs.cache
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\Graphics.dll
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\Graphics.pdb
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.dll
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.pdb

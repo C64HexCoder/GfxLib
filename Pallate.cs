@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Media;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 
 
@@ -298,6 +299,23 @@ namespace GfxLib
             NumOfColors= palette.Length;
             Colors = palette;
             _SelectedColorIdx = 0;
+            
+        }
+        public void SetPalette (Image image)
+        {
+            if (image != null)
+            {
+                if (image.Palette != null)
+                {
+                    NumOfColors = image.Palette.Entries.Length;
+                    Colors = image.Palette.Entries;
+                    _SelectedColorIdx = 0;
+                }
+                else 
+                {
+                    MessageBox.Show("The image does not have Pallate of colors.");
+                }
+            }
         }
 
         public byte FindColorInPallate (Color color)
