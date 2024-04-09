@@ -83,7 +83,7 @@ namespace GfxLib
         private string ReadString ()
         {
             uint StringLength = Endian.Convert(binReader.ReadUInt32());
-            string str = new string("");
+            string str = "";
 
             if (StringLength > 0)
             {
