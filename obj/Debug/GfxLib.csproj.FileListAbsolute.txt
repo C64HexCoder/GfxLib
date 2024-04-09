@@ -6,3 +6,5 @@ C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.Genera
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.CoreCompileInputs.cache
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.dll
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.pdb
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Amiga.ImageGrid.resources
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.ImageGrid.resources

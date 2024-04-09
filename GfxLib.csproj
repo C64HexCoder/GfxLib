@@ -43,7 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Bitplane.cs" />
+    <Compile Include="Endian.cs" />
+    <Compile Include="IFF.cs" />
+    <Compile Include="ImageGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImageGrid.Designer.cs">
+      <DependentUpon>ImageGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectFile.cs" />
     <Compile Include="Pallate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -53,6 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ImageGrid.resx">
+      <DependentUpon>ImageGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pallate.resx">
       <DependentUpon>Pallate.cs</DependentUpon>
     </EmbeddedResource>
