@@ -46,6 +46,12 @@
     <Compile Include="Bitplane.cs" />
     <Compile Include="Endian.cs" />
     <Compile Include="IFF.cs" />
+    <Compile Include="ImageBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageBox.Designer.cs">
+      <DependentUpon>ImageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ImageBox.resx">
+      <DependentUpon>ImageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageGrid.resx">
       <DependentUpon>ImageGrid.cs</DependentUpon>
     </EmbeddedResource>

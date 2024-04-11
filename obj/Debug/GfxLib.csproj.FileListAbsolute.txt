@@ -7,3 +7,4 @@ C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.CoreCo
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.dll
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.pdb
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.ImageGrid.resources
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.ImageBox.resources

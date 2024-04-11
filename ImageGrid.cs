@@ -19,6 +19,7 @@ namespace GfxLib
         private int CellWidth , CellHeight;
         public Bitmap _GridImage;
         public Color _DrawColor = Color.Blue;
+        public bool _KeepAspectRatio = true;
         //public bool _CellBorder = true;
 
         public bool CellBorder { get; set; } = true;
@@ -80,6 +81,11 @@ namespace GfxLib
 
         }
 
+        public bool KeepAspectRatio
+        {
+            get => _KeepAspectRatio;
+            set => _KeepAspectRatio = value;
+        }
         public void SetCellDimention (int width, int height)
         {
             CellWidth = width;
@@ -109,7 +115,15 @@ namespace GfxLib
         {
             //CellWidth = (int)Math.Ceiling((decimal)Width / CellsOnX);
             CellWidth = Width / CellsOnX;
-            CellHeight = Height / CellsOnY;
+
+            if (_KeepAspectRatio)
+            {
+                CellHeight = CellWidth;
+                Height = CellHeight * CellsOnY+ _LineWidth;
+            }
+            else
+                CellHeight = Height / CellsOnY;
+
             //Width = CellsOnX * CellWidth;
             
             Pen LinePen = new Pen(Color.Black, LineWidth);
@@ -119,7 +133,7 @@ namespace GfxLib
 
             for (int x = 0; x < (Width); x += CellWidth)
                 e.Graphics.DrawLine(LinePen, x, 0, x, CellHeight * CellsOnY);
-                
+
         
 
         }
