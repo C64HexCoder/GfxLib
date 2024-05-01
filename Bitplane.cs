@@ -445,7 +445,6 @@ namespace GfxLib
             NumOfBitmaps = CalculateNumOfBitmaps();
             //CreateBitMaps();
 
-            int bpp;
             byte[] imageDataBytes = new byte[imageSizeInBytes];
             Marshal.Copy(intPtr, imageDataBytes, 0, imageSizeInBytes);
             Bitplanes = new byte[1, WidthInBytes*Height];
@@ -526,7 +525,6 @@ namespace GfxLib
             int imageSizeInBytes = imageData.Stride * imageData.Height;
             Stride = imageData.Stride;
 
-            int bpp;
             byte[] imageDataBytes = new byte[imageSizeInBytes];
             Marshal.Copy(intPtr, imageDataBytes, 0, imageSizeInBytes);
             //if (Pallate == null)
@@ -680,7 +678,6 @@ namespace GfxLib
         
         public void SaveBitmapsAsAssemblerSourceCode(string fileName, OutputSize outputSize, int numInRaw = 8)
         {
-            int BytesInLine = 0;
             
             StreamWriter streamWriter = new StreamWriter(fileName);
             int NumInARaw = 0;
@@ -767,7 +764,6 @@ namespace GfxLib
 
         public void SaveBitmapsAsInterleavedAssemblerSourceCode (string fileName, OutputSize outputSize, int numInRaw = 8)
         {
-            int BytesInLine = 0;
 
             StreamWriter streamWriter = new StreamWriter(fileName);
             int NumInARaw = 0;
@@ -852,7 +848,6 @@ namespace GfxLib
 
         public void SaveBitmapsAsInterleavedCPPSourceCode(string fileName, OutputSize outputSize, int numInRaw = 8)
         {
-            int BytesInLine = 0;
 
             StreamWriter streamWriter = new StreamWriter(fileName);
             int NumInARaw = 0;
@@ -943,7 +938,6 @@ namespace GfxLib
 
         public void SaveBitmapsAsCPPSourceCode(string fileName, OutputSize outputSize, int numInRaw = 8)
         {
-            int BytesInLine = 0;
 
             StreamWriter streamWriter = new StreamWriter(fileName);
             int NumInARaw = 0;

@@ -7,8 +7,8 @@
     <ProjectGuid>{5C6DA683-466B-4328-A12E-AA20DC9AB873}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Graphics</RootNamespace>
-    <AssemblyName>Graphics</AssemblyName>
+    <RootNamespace>GfxLib</RootNamespace>
+    <AssemblyName>GfxLib</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -45,6 +45,12 @@
   <ItemGroup>
     <Compile Include="Bitplane.cs" />
     <Compile Include="Endian.cs" />
+    <Compile Include="FontDisp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FontDisp.Designer.cs">
+      <DependentUpon>FontDisp.cs</DependentUpon>
+    </Compile>
     <Compile Include="IFF.cs" />
     <Compile Include="ImageBox.cs">
       <SubType>Component</SubType>
@@ -68,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FontDisp.resx">
+      <DependentUpon>FontDisp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageBox.resx">
       <DependentUpon>ImageBox.cs</DependentUpon>
     </EmbeddedResource>

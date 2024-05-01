@@ -32,13 +32,14 @@
             // 
             // ImageGrid
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ImageGrid";
-            this.Size = new System.Drawing.Size(317, 273);
+            this.Size = new System.Drawing.Size(408, 364);
+            this.Load += new System.EventHandler(this.ImageGrid_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ImageGrid_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ImageGrid_MouseClick);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImageGrid_MouseMove);
             this.ResumeLayout(false);
 
         }

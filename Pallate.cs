@@ -73,9 +73,9 @@ namespace GfxLib
             get { return redNum.Visible; }
         }
 
-        byte Red => _Red;
-        byte Green => _Green;
-        byte Blue => _Blue;
+        public byte Red => _Red;
+        public byte Green => _Green;
+        public byte Blue => _Blue;
 
 
         public Color SelectedColor

@@ -1,10 +1,11 @@
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\Graphics.dll
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\Graphics.pdb
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\GfxLib.dll
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\bin\Debug\GfxLib.pdb
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.AssemblyReference.cache
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.FontDisp.resources
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.ImageBox.resources
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.ImageGrid.resources
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.Pallate.resources
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.GenerateResource.cache
 C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.csproj.CoreCompileInputs.cache
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.dll
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\Graphics.pdb
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.ImageGrid.resources
-C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.ImageBox.resources
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.dll
+C:\Users\yossi\source\repos\GLCDToolsKit\Graphics\obj\Debug\GfxLib.pdb
