@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,70 @@ namespace GfxLib
     {
         private int _CellsOnX = 8; int _CellsOnY = 8;
         Bitmap fontBitmap;
+        private int xSize;
+        private int ySize;
+        private char _character;
+        private int _ascii;
+        private bool _Selected;
+        private Color _selecterColor = Color.Yellow;
+        private SoundPlayer _SoundPlayer;
+        private string _SelectedSound;
 
+        public string SelectedSound
+        {
+            get { return _SelectedSound; }
+            set
+            {
+             //   OpenFileDialog dlg = new OpenFileDialog();
+             //   dlg.Filter = "Wave|*.wav";
+              //  if (dlg.ShowDialog() == DialogResult.OK)
+               //     _selectedSound = dlg.FileName;
 
-        [Description("The Width and height of each cell when in CellSizing.Fixxed mode"), Category("Grid")]
+                _SelectedSound = value;
+            }
+        }
+
+        [Description("The sound to play when control selected"),Category("Behavior")]
+        public SoundPlayer SoundPlayer { get { return _SoundPlayer; } set { _SoundPlayer = value; } }
+
+        [Description("The color in which che control will be painted when selected"),Category("Behavior")]
+        public Color SelectedColor { get => _selecterColor; set => _selecterColor = value; }
+
+        [Description("Select the FontDisp and highlight it"),Category("Behavior")]
+        public bool Selected
+        {
+            get { return _Selected; }
+            set
+            {
+                if (value == true)
+                    BackColor = _selecterColor;
+                else
+                    BackColor = SystemColors.Control;
+
+                _Selected = value;
+            }
+        }
+
+        [Description("The ascii code of the character"),Category("Information")]
+        public int Ascii
+        {
+            get => _ascii; set => _ascii = value;
+        }
+
+        [Description("The character printer in the grid"),Category("Information")]
+        public char Character
+        {
+            get => _character; set => _character = value;
+        }
+
+        
+
+        [Description("Return the Width of the grid (Read only)"),Category("Grid")]
+        public int GridWidth { get => xSize;}
+        [Description("Return the Height of the grid (Read only)"), Category("Grid")]
+        public int GridHeight { get => ySize;}
+
+    [Description("The Width and height of each cell when in CellSizing.Fixxed mode"), Category("Grid")]
 
         public int CellsWidthHeight
         {
@@ -26,27 +88,50 @@ namespace GfxLib
         }
 
 
-    /*    [Description("The Backgrond color of the image Displayed in the Grid."), Category("Grid")]
-        public Color ImageBackColor
-        {
-            get => _GridBGColr;
-            set
-            {
-                imageGrid.BackgroundColor = value;
-            }
-        }*/
+   
         public FontDisp()
         {
             InitializeComponent();
             imageGrid.KeepAspectRatio = false;
             imageGrid.EnableDrawing=false;
 
-         
+        }
 
-          
+        [Description("Constructor which defines the Width of the Control")]
+        public FontDisp(int width)
+        {
+            InitializeComponent();
+            imageGrid.KeepAspectRatio = true;
+            imageGrid.EnableDrawing = false;
+            AutoSize = false;
+            Width = width;
 
-            //Refresh();
+        }
 
+        public FontDisp(Font font, char charToDraw)
+        {
+            InitializeComponent();
+            imageGrid.KeepAspectRatio = false;
+            imageGrid.EnableDrawing = false;
+            Font = font;
+            DrawChar (charToDraw);
+        }
+
+        public FontDisp(Font font, char charToDraw, int width)
+        {
+            InitializeComponent();
+            imageGrid.KeepAspectRatio = false;
+            imageGrid.EnableDrawing = false;
+            Font = font;
+            DrawChar(charToDraw,width);
+        }
+
+        public FontDisp(char charToDraw)
+        {
+            InitializeComponent();
+            imageGrid.KeepAspectRatio = false;
+            imageGrid.EnableDrawing = false;
+            DrawChar(charToDraw);
         }
 
         [Description("Used to Indicate which Cell size to use. Fixed Cell Size in which we decide what is the cell size or a dinamic " +
@@ -82,70 +167,128 @@ namespace GfxLib
             }
         }
 
-    /*    public Font SelectedFont // To Remove?
-        {
-            get => (Font)_SelectedFont;
-            set
-            {
-                _SelectedFont = value;
-                fontChar = new Bitmap((int)_SelectedFont.Size, _SelectedFont.Height);
-                Graphics bitGraph = Graphics.FromImage(fontChar);
-                bitGraph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-                bitGraph.DrawString("G", _SelectedFont, Brushes.Black, new PointF(0, 0));
-                bitGraph.Dispose();
-                imageGrid.DrawImage(fontChar);           
-            }
-        } */
 
         public void DrawChar (char charToDraw)
         {
-            Height = this.Font.Height * imageGrid.CellWIdthHeight + imageGrid.LineWidth;
-            fontBitmap = new Bitmap((int)this.Font.Size, this.Font.Height);
+            //Height = this.Font.Height * imagseGrid.CellWIdthHeight + imageGrid.LineWidth;
+            
+            Character = charToDraw;
+            Ascii = Convert.ToInt32(charToDraw);
+            
+            Graphics tmpGfx = CreateGraphics();
+            SizeF strSize = tmpGfx.MeasureString(charToDraw.ToString(), Font);
+            xSize = (int)Math.Round(strSize.Width);
+            ySize = (int)Math.Round(strSize.Height);
+            fontBitmap = new Bitmap(xSize, ySize);
             Graphics fontBMGfx = Graphics.FromImage(fontBitmap);
             fontBMGfx.Clear(Color.Transparent);
             fontBMGfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             fontBMGfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
             fontBMGfx.DrawString(charToDraw.ToString(), this.Font, Brushes.Black, new PointF(0, 0));
             fontBMGfx.Dispose();
+       
             imageGrid.GridImage = fontBitmap;
             charAsciiTxt.Text = Convert.ToInt16(charToDraw).ToString();
+
+            if (AutoSize == true)
+            {         
+                 Width = 1 + charAsciiTxt.Width + 2 + imageGrid.Width;
+                 Height = imageGrid.Height;
+
+                charAsciiTxt.Left = 1;
+                charAsciiTxt.Top = (Height - charAsciiTxt.Height) / 2;
+
+                imageGrid.Left = charAsciiTxt.Right + 2;
+                imageGrid.Top = 0;
+            }
+            else
+            {
+                //imageGrid.Left = this.Bounds.Right -  imageGrid.Width;
+            }
+
+          
+        }
+
+        public void DrawChar(char charToDraw, int width)
+        {
+            //Height = this.Font.Height * imagseGrid.CellWIdthHeight + imageGrid.LineWidth;
+            Character = charToDraw;
+            Ascii = Convert.ToInt32(charToDraw);
+
+            Graphics tmpGfx = CreateGraphics();
+            SizeF strSize = tmpGfx.MeasureString(charToDraw.ToString(), Font);
+            xSize = (int)Math.Round(strSize.Width);
+            ySize = (int)Math.Round(strSize.Height);
+            fontBitmap = new Bitmap(xSize, ySize);
+            Graphics fontBMGfx = Graphics.FromImage(fontBitmap);
+            fontBMGfx.Clear(Color.Transparent);
+            fontBMGfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+            fontBMGfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            fontBMGfx.DrawString(charToDraw.ToString(), this.Font, Brushes.Black, new PointF(0, 0));
+            fontBMGfx.Dispose();
+
+            imageGrid.GridImage = fontBitmap;
+            charAsciiTxt.Text = Convert.ToInt16(charToDraw).ToString();
+
+            if (AutoSize == true)
+            {
+                Width = 1 + charAsciiTxt.Width + 2 + imageGrid.Width;
+                Height = imageGrid.Height;
+
+                charAsciiTxt.Left = 1;
+                charAsciiTxt.Top = (Height - charAsciiTxt.Height) / 2;
+
+                imageGrid.Left = charAsciiTxt.Right + 2;
+                imageGrid.Top = 0;
+            }
+            else
+            {
+                Width = width;
+                //imageGrid.Left = this.Bounds.Right -  imageGrid.Width;
+            }
+
+
+        }
+
+
+        private void imageGrid_Resize(object sender, EventArgs e)
+        {
             Width = 1 + charAsciiTxt.Width + 2 + imageGrid.Width;
             Height = imageGrid.Height;
 
-            //Refresh();
             charAsciiTxt.Left = 1;
             charAsciiTxt.Top = (Height - charAsciiTxt.Height) / 2;
 
             imageGrid.Left = charAsciiTxt.Right + 2;
             imageGrid.Top = 0;
-
         }
-     
 
-        private void FontDisp_Paint(object sender, PaintEventArgs e)
+        public byte GetVerticalByte (int x, int page)
         {
-         /*   charAsciiTxt.Left = 1;
-            imageGrid.Left = charAsciiTxt.Right + 2;
-            //imageGrid.Width = Right - imageGrid.Left;
-            Height = imageGrid.Height;
-            imageGrid.Top = 0;
-            charAsciiTxt.Top = (Height - charAsciiTxt.Height) / 2;
-            Width = 1 + charAsciiTxt.Width + 2 + imageGrid.Width;*/
+            int Yoffset = (int)page*8;
+            byte ReturnValue = 0;
+
+            for (int y = 0; y<8;y++)
+            {
+                if (imageGrid.GetPixel(x,page*8).A !=  0)
+                {
+                    ReturnValue |= (byte)(1 << (y-1));
+                }
+            }
+            return ReturnValue;
         }
 
-        private void FontDisp_Load(object sender, EventArgs e)
+        private void FontDisp_Click(object sender, EventArgs e)
         {
-            Width = 1 + charAsciiTxt.Width + 2 + imageGrid.Width;
-            Height = imageGrid.Height;
-
-            charAsciiTxt.Left = 1;
-            charAsciiTxt.Top = (Height - charAsciiTxt.Height) / 2;
-
-            imageGrid.Left = charAsciiTxt.Right + 2;
-            imageGrid.Top = 0;
-
+    /*        if (this.Focused == true)
+            {
+                this.BackColor = Color.Red;
+                this.BorderStyle = BorderStyle.Fixed3D;
+            }
+            else
+            {
+                this.BackColor = Color.Green;
+            }*/
         }
-
-      
     }
 }

@@ -51,6 +51,7 @@
     <Compile Include="FontDisp.Designer.cs">
       <DependentUpon>FontDisp.cs</DependentUpon>
     </Compile>
+    <Compile Include="GLCD.cs" />
     <Compile Include="IFF.cs" />
     <Compile Include="ImageBox.cs">
       <SubType>Component</SubType>

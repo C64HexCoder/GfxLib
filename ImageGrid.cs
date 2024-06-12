@@ -276,6 +276,16 @@ namespace GfxLib
                 gfx.FillRectangle(new SolidBrush(color), new Rectangle(x*CellWidth/*+LineWidth*/, y*CellHeight/*+LineWidth*/, CellWidth/*-LineWidth*/, CellHeight/*-LineWidth*/));
         }
 
+        public Color GetPixel(int x, int y)
+        {
+            return _GridImage.GetPixel(x, y);
+        }
+
+        public bool IsPixelOn (int x, int y)
+        {
+            if (_GridImage.GetPixel(x,y).A != 0x00) return true;
+            return false;
+        }
         private void ImageGrid_MouseClick(object sender, MouseEventArgs e)
         {
 
@@ -290,8 +300,9 @@ namespace GfxLib
             }          
         }
 
-     
+    
 
+        
       /*  private void ImageGrid_MouseDown(object sender, MouseEventArgs e)
         {
             if (EnableDrawing)
@@ -394,10 +405,21 @@ namespace GfxLib
             CellsOnX = image.Width;
             CellsOnY = image.Height;
 
+            if (CellSizing == CellSize.Fixed)
+            {
+                Width = CellsOnX * CellWIdthHeight + LineWidth;
+                Height = CellsOnY * CellWIdthHeight + LineWidth;
+            }
+            else
+            {
+                Width = CellsOnX * CellWidth + LineWidth;
+                Height = CellsOnY * CellHeight + LineWidth;
+            }
+         
+
             //CellHeight = CellWidth;
 
-            Width = CellsOnX * CellWidth+LineWidth;
-            Height = CellsOnY * CellHeight+LineWidth;
+   
 
 
             switch (DisplayMode)
