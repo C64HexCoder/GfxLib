@@ -16,14 +16,24 @@ namespace GfxLib
     {
         private int _CellsOnX = 8; int _CellsOnY = 8;
         Bitmap fontBitmap;
-        private int xSize;
-        private int ySize;
+        public int xSize;
+        public int ySize;
         private char _character;
-        private int _ascii;
+        private int _Ascii;
         private bool _Selected;
         private Color _selecterColor = Color.Yellow;
         private SoundPlayer _SoundPlayer;
         private string _SelectedSound;
+        //private int _HightInPages;
+
+        
+        public int HightInPages
+        {
+            get
+            {
+                return ySize % 8 == 0 ? ySize / 8 : ySize / 8 + 1;
+            }
+        }
 
         public string SelectedSound
         {
@@ -63,7 +73,7 @@ namespace GfxLib
         [Description("The ascii code of the character"),Category("Information")]
         public int Ascii
         {
-            get => _ascii; set => _ascii = value;
+            get => _Ascii; set => _Ascii = value;
         }
 
         [Description("The character printer in the grid"),Category("Information")]
@@ -270,9 +280,12 @@ namespace GfxLib
 
             for (int y = 0; y<8;y++)
             {
-                if (imageGrid.GetPixel(x,page*8).A !=  0)
+                if (page*8+y == ySize)
+                    return ReturnValue;
+
+                if (imageGrid.GetPixel(x,page*8+y).A !=  0)
                 {
-                    ReturnValue |= (byte)(1 << (y-1));
+                    ReturnValue |= (byte)(1 << y);
                 }
             }
             return ReturnValue;
